@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美利坚合众国国情介绍</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  background: #060e1a;
+  color: #d0d8e8;
+  overflow-x: hidden;
+}
+
+/* ── 幻灯片通用 ── */
+.slide {
+  width: 1280px; min-height: 720px; margin: 0 auto;
+  position: relative; overflow: hidden;
+  page-break-after: always;
+}
+.slide-bg-dark {
+  background: linear-gradient(160deg, #060e1a 0%, #0f2240 40%, #0a1a30 70%, #060e1a 100%);
+}
+.slide-bg-warm {
+  background: linear-gradient(160deg, #0a0f1a 0%, #1a1a2e 40%, #0f1a2e 70%, #0a0f1a 100%);
+}
+
+/* 装饰 */
+.gold-bar-top, .gold-bar-bottom {
+  position: absolute; left: 0; width: 100%; height: 4px; z-index: 10;
+  background: linear-gradient(90deg, transparent 2%, #c8a25c 15%, #f0d68a 50%, #c8a25c 85%, transparent 98%);
+}
+.gold-bar-top { top: 0; }
+.gold-bar-bottom { bottom: 0; }
+
+.corner { position: absolute; width: 60px; height: 60px; z-index: 10; opacity: 0.3; }
+.corner-tl { top: 20px; left: 20px; border-top: 2px solid #c8a25c; border-left: 2px solid #c8a25c; }
+.corner-tr { top: 20px; right: 20px; border-top: 2px solid #c8a25c; border-right: 2px solid #c8a25c; }
+.corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid #c8a25c; border-left: 2px solid #c8a25c; }
+.corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid #c8a25c; border-right: 2px solid #c8a25c; }
+
+.glow {
+  position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+}
+.glow-1 { width: 400px; height: 400px; top: -100px; right: -50px; background: rgba(30,80,160,0.15); }
+.gow-2 { width: 300px; height: 300px; bottom: -50px; left: -50px; background: rgba(20,60,130,0.12); }
+
+/* 排版 */
+.slide-number {
+  position: absolute; bottom: 18px; right: 30px; font-size: 13px;
+  color: #5a7a9a; z-index: 10; letter-spacing: 2px;
+}
+
+h1.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 52px; font-weight: 900; color: #f0d68a;
+  letter-spacing: 12px; line-height: 1.3;
+  text-shadow: 0 4px 20px rgba(200,162,92,0.25);
+}
+h2.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36px; font-weight: 700; color: #f0d68a;
+  letter-spacing: 8px; text-shadow: 0 2px 12px rgba(200,162,92,0.2);
+}
+h3.card-title {
+  font-size: 16px; font-weight: 700; color: #fff;
+  letter-spacing: 2px; padding: 12px 18px;
+}
+.divider {
+  display: flex; align-items: center; gap: 12px; margin: 18px 0;
+}
+.divider .line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c8a25c55, transparent); }
+.divider .diamond { width: 8px; height: 8px; background: #c8a25c; transform: rotate(45deg); }
+
+.sub-label { font-size: 13px; color: #8aa4c4; letter-spacing: 3px; }
+
+/* 卡片 */
+.card {
+  background: linear-gradient(145deg, rgba(20,45,85,0.4), rgba(15,30,60,0.6));
+  border: 1px solid rgba(200,162,92,0.12);
+  border-radius: 10px; overflow: hidden;
+  transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-2px); }
+.card-header {
+  padding: 12px 18px; font-size: 15px; font-weight: 700;
+  color: #fff; letter-spacing: 2px;
+}
+.card-header.c1 { background: linear-gradient(135deg, #1a3a6b, #2a5a9b); border-bottom: 2px solid #c8a25c44; }
+.card-header.c2 { background: linear-gradient(135deg, #1a4a3b, #2a7a5b); border-bottom: 2px solid #6ac89b44; }
+.card-header.c3 { background: linear-gradient(135deg, #4a2a1a, #8a4a2a); border-bottom: 2px solid #d88a4444; }
+.card-header.c4 { background: linear-gradient(135deg, #3a1a4a, #6a2a7a); border-bottom: 2px solid #aa6aca44; }
+.card-header.c5 { background: linear-gradient(135deg, #1a3a5a, #2a6a8a); border-bottom: 2px solid #5abaca44; }
+
+.card ul {
+  padding: 14px 18px; list-style: none;
+}
+.card li {
+  font-size: 12.5px; color: #b0bcd0; padding: 6px 0; line-height: 1.65;
+  border-bottom: 1px solid rgba(200,162,92,0.06);
+}
+.card li:last-child { border-bottom: none; }
+.card li::before { content: '▸ '; color: #c8a25c; font-weight: bold; }
+
+/* 数据格子 */
+.data-cell {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px; border-radius: 8px;
+  background: rgba(20,45,85,0.3);
+  border-left: 3px solid #c8a25c;
+}
+.data-cell .icon { font-size: 24px; }
+.data-cell .label { font-size: 12px; color: #c8a25c; font-weight: 700; min-width: 50px; }
+.data-cell .value { font-size: 13px; color: #d0d8e8; }
+
+/* 时间线 */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 2px; background: linear-gradient(to bottom, #c8a25c, #c8a25c22);
+}
+.timeline-item { position: relative; margin-bottom: 16px; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -24px; top: 6px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #c8a25c; border: 2px solid #0a162a;
+}
+.timeline-item .year { font-size: 13px; color: #f0d68a; font-weight: 700; }
+.timeline-item .desc { font-size: 12px; color: #a0b0c8; margin-top: 2px; line-height: 1.5; }
+
+/* 引用 */
+.quote {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px; color: #d0dce8; font-style: italic;
+  padding: 20px 30px; border-left: 3px solid #c8a25c;
+  background: rgba(20,45,85,0.2); border-radius: 0 8px 8px 0;
+  line-height: 1.8;
+}
+.quote .author { font-style: normal; font-size: 13px; color: #8aa4c4; margin-top: 8px; text-align: right; }
+
+/* 标签 */
+.tag {
+  display: inline-block; padding: 4px 12px; border-radius: 20px;
+  font-size: 11px; color: #c8a25c; border: 1px solid rgba(200,162,92,0.3);
+  background: rgba(200,162,92,0.08); margin: 3px;
+}
+
+/* 页脚 */
+.slide-footer {
+  position: absolute; bottom: 18px; left: 30px;
+  font-size: 11px; color: #4a6a8a; z-index: 10;
+}
+
+/* 进度指示 */
+.page-indicator {
+  position: fixed; top: 50%; right: 20px; transform: translateY(-50%);
+  z-index: 999; display: flex; flex-direction: column; gap: 8px;
+}
+.page-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #2a4a6a; border: 1px solid #c8a25c55;
+  transition: all 0.3s;
+}
+.page-dot.active { background: #c8a25c; transform: scale(1.3); }
+
+/* 2列布局 */
+.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.cols-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+/* 统计数字 */
+.stat-number {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36px; font-weight: 900; color: #f0d68a;
+  line-height: 1;
+}
+.stat-label { font-size: 11px; color: #8aa4c4; margin-top: 4px; }
+.stat-unit { font-size: 14px; color: #c8a25c; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     第1页：封面 — 美利坚合众国
+     ══════════════════════════════════════════════════════════ -->
+<div class="slide slide-bg-dark" id="page1">
+  <div class="gold-bar-top"></div>
+  <div class="gold-bar-bottom"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  <div class="glow glow-1"></div>
+
+  <!-- 左：国旗 -->
+  <div style="position:absolute; left:50px; top:80px;">
+    <img src="us_flag_hd.png" style="width:580px; height:auto; border-radius:6px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 60px rgba(30,60,120,0.2);" alt="美国国旗">
+  </div>
+
+  <!-- 右：标题区 -->
+  <div style="position:absolute; right:60px; top:100px; text-align:right; width:520px;">
+    <img src="us_seal_hd.png" style="width:160px; height:160px; opacity:0.9; margin-bottom:20px;
+      filter: drop-shadow(0 4px 15px rgba(200,162,92,0.3));" alt="美国国徽">
+    <h1 class="hero-title">美利坚<br>合众国</h1>
+    <div class="sub-label" style="margin-top:10px;">THE UNITED STATES OF AMERICA</div>
+    <div style="margin-top:20px; text-align:right;">
+      <span class="tag">E Pluribus Unum</span>
+      <span class="tag">合众为一</span>
+      <span class="tag">1776 — Present</span>
+    </div>
+  </div>
+
+  <!-- 底部数据条 -->
+  <div style="position:absolute; bottom:40px; left:60px; right:60px;">
+    <div class="divider">
+      <div class="line"></div><div class="diamond"></div><div class="line"></div>
+    </div>
+    <div style="display:flex; justify-content:space-around; margin-top:15px;">
+      <div style="text-align:center;">
+        <div class="stat-number">3.35<span class="stat-unit">亿</span></div>
+        <div class="stat-label">总人口</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-number">27.36<span class="stat-unit">万亿$</span></div>
+        <div class="stat-label">GDP总量</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-number">937<span class="stat-unit">万km²</span></div>
+        <div class="stat-label">国土面积</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-number">50<span class="stat-unit">个州</span></div>
+        <div class="stat-label">联邦组成</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="stat-number">250<span class="stat-unit">年</span></div>
+        <div class="stat-label">建国历史</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-number">01 / 05</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     第2页：历史沿革
+     ══════════════════════════════════════════════════════════ -->
+<div class="slide slide-bg-dark" id="page2">
+  <div class="gold-bar-top"></div>
+  <div class="gold-bar-bottom"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-br"></div>
+  <div class="glow glow-1"></div>
+
+  <div style="padding: 50px 60px;">
+    <h2 class="section-title">🏛️ 历史沿革</h2>
+    <div class="sub-label">From Colony to Superpower — 从殖民地到超级大国</div>
+    <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+    <div class="cols-2" style="margin-top:10px;">
+      <!-- 左列：时间线 -->
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="year">1607 — 殖民开端</div>
+          <div class="desc">英国在弗吉尼亚建立第一个永久殖民地詹姆斯敦，开启了欧洲人在北美的定居历史</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1776 — 独立宣言</div>
+          <div class="desc">7月4日，大陆会议通过《独立宣言》，宣告脱离英国殖民统治，美利坚合众国诞生</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1787 — 制定宪法</div>
+          <div class="desc">费城制宪会议制定世界最古老的成文宪法，确立三权分立原则与联邦共和体制</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1861-1865 — 南北战争</div>
+          <div class="desc">围绕奴隶制的内战，北方胜利后废除奴隶制，维护了国家统一，加速工业化进程</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1898 — 美西战争</div>
+          <div class="desc">击败西班牙，获得菲律宾、关岛、波多黎各，正式走上帝国主义扩张道路</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1917 — 参加一战</div>
+          <div class="desc">加入协约国参战，战后成为世界主要大国，威尔逊提出"十四点和平原则"</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1941-1945 — 二战</div>
+          <div class="desc">珍珠港事件后参战，成为反法西斯同盟核心力量，战后跃升为世界超级大国</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1947 — 冷战开启</div>
+          <div class="desc">出台杜鲁门主义，与苏联展开长达44年的冷战对抗，建立北约军事联盟</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">1991 — 冷战结束</div>
+          <div class="desc">苏联解体，美国成为唯一超级大国，确立全球霸权地位</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">2001-2021 — 反恐时代</div>
+          <div class="desc">9·11事件后发动阿富汗、伊拉克战争，中东战略深刻影响全球格局</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">2026 — 当代</div>
+          <div class="desc">对伊朗军事行动持续中，全球战略格局面临深刻调整</div>
+        </div>
+      </div>
+
+      <!-- 右列：核心信息 -->
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-header c1">🏛️ 国家治理体系</div>
+          <ul>
+            <li><strong>政体：</strong>联邦总统制共和国，三权分立（行政、立法、司法）</li>
+            <li><strong>宪法：</strong>1787年制定，全球最古老的成文宪法，至今仍生效</li>
+            <li><strong>总统：</strong>国家元首兼政府首脑，任期4年，可连任一次</li>
+            <li><strong>国会：</strong>参议院100席（每州2席）+ 众议院435席（按人口分配）</li>
+            <li><strong>最高法院：</strong>9名大法官，终身任命，拥有司法审查权</li>
+            <li><strong>政党：</strong>民主党（🫏驴）与共和党（🐘象）两党轮替执政</li>
+            <li><strong>联邦：</strong>50个州 + 华盛顿D.C.特区 + 海外领地</li>
+          </ul>
+        </div>
+        <div class="quote">
+          "We the People of the United States, in Order to form a more perfect Union..."
+          <div class="author">— 《美利坚合众国宪法》序言</div>
+        </div>
+        <div style="margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="data-cell"><span class="icon">🗓️</span><div><div class="label">国庆日</div><div class="value">7月4日（独立日）</div></div></div>
+          <div class="data-cell"><span class="icon">📍</span><div><div class="label">首都</div><div class="value">华盛顿哥伦比亚特区</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">02 / 05</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     第3页：经济与科技
+     ══════════════════════════════════════════════════════════ -->
+<div class="slide slide-bg-dark" id="page3">
+  <div class="gold-bar-top"></div>
+  <div class="gold-bar-bottom"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  <div class="glow glow-1" style="left:-100px; right:auto;"></div>
+
+  <div style="padding: 50px 60px;">
+    <h2 class="section-title">💰 经济与科技创新</h2>
+    <div class="sub-label">The World's Largest Economy & Tech Innovation Hub</div>
+    <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+    <!-- 顶部数据展示 -->
+    <div style="display:flex; justify-content:space-around; margin: 15px 0 20px;">
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:20px;">
+        <div class="stat-number">27.36<span class="stat-unit">万亿$</span></div>
+        <div class="stat-label">GDP（2024）全球第一</div>
+        <div style="font-size:11px; color:#6a8aaa; margin-top:4px;">占全球经济总量约25%</div>
+      </div>
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:20px;">
+        <div class="stat-number">7.6<span class="stat-unit">万$</span></div>
+        <div class="stat-label">人均GDP（2024）</div>
+        <div style="font-size:11px; color:#6a8aaa; margin-top:4px;">全球前8位</div>
+      </div>
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:20px;">
+        <div class="stat-number">400<span class="stat-unit">+</span></div>
+        <div class="stat-label">诺贝尔奖获得者</div>
+        <div style="font-size:11px; color:#6a8aaa; margin-top:4px;">全球排名第一</div>
+      </div>
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:20px;">
+        <div class="stat-number">59<span class="stat-unit">所</span></div>
+        <div class="stat-label">全球Top100大学</div>
+        <div style="font-size:11px; color:#6a8aaa; margin-top:4px;">高等教育世界领先</div>
+      </div>
+    </div>
+
+    <div class="cols-2">
+      <div class="card">
+        <div class="card-header c2">📈 经济实力</div>
+        <ul>
+          <li><strong>储备货币：</strong>美元为全球主要储备货币，国际石油贸易以美元结算（石油美元体系）</li>
+          <li><strong>金融市场：</strong>华尔街（NYSE + NASDAQ）为全球最大证券交易中心</li>
+          <li><strong>产业巨头：</strong>Apple、Microsoft、Google、Amazon、Meta、Tesla等全球市值最高企业</li>
+          <li><strong>服务业：</strong>占GDP约80%，金融、科技、医疗、教育为核心产业</li>
+          <li><strong>能源：</strong>页岩油气革命后成为全球最大油气生产国，实现能源独立</li>
+          <li><strong>农业：</strong>全球最大粮食出口国之一，玉米、大豆、小麦产量世界前列</li>
+          <li><strong>贸易：</strong>全球最大进口国和主要出口国，与中国贸易额超7000亿美元</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header c5">🔬 科技创新</div>
+        <ul>
+          <li><strong>硅谷：</strong>全球科技创新圣地，孕育了无数科技巨头与独角兽企业</li>
+          <li><strong>人工智能：</strong>OpenAI、Google DeepMind引领全球AI发展浪潮</li>
+          <li><strong>航空航天：</strong>NASA + SpaceX，载人登月、火星探索、星链计划</li>
+          <li><strong>生物医药：</strong>辉瑞、强生、莫德纳等引领全球制药与疫苗研发</li>
+          <li><strong>半导体：</strong>NVIDIA、Intel、AMD、Qualcomm等芯片巨头</li>
+          <li><strong>高等教育：</strong>哈佛、MIT、斯坦福、伯克利、普林斯顿等世界顶尖学府</li>
+          <li><strong>研发投入：</strong>R&D支出全球第一，约8000亿美元/年</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">03 / 05</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     第4页：军事力量
+     ══════════════════════════════════════════════════════════ -->
+<div class="slide slide-bg-warm" id="page4">
+  <div class="gold-bar-top"></div>
+  <div class="gold-bar-bottom"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div style="padding: 50px 60px;">
+    <h2 class="section-title">⚔️ 军事力量与国际地位</h2>
+    <div class="sub-label">Global Military Supremacy & International Influence</div>
+    <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+    <!-- 军力数据 -->
+    <div style="display:flex; justify-content:space-around; margin:15px 0 20px;">
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:18px;">
+        <div class="stat-number" style="color:#e08060;">8860<span class="stat-unit">亿$</span></div>
+        <div class="stat-label">年度军费（2024）</div>
+        <div style="font-size:11px; color:#aa7a6a; margin-top:4px;">超前十名其余国家总和</div>
+      </div>
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:18px;">
+        <div class="stat-number" style="color:#e08060;">11</div>
+        <div class="stat-label">核动力航母</div>
+        <div style="font-size:11px; color:#aa7a6a; margin-top:4px;">全球最大海军力量</div>
+      </div>
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:18px;">
+        <div class="stat-number" style="color:#e08060;">5500<span class="stat-unit">枚</span></div>
+        <div class="stat-label">核弹头</div>
+        <div style="font-size:11px; color:#aa7a6a; margin-top:4px;">五大核武国家之一</div>
+      </div>
+      <div class="card" style="flex:1; margin:0 8px; text-align:center; padding:18px;">
+        <div class="stat-number" style="color:#e08060;">140<span class="stat-unit">万</span></div>
+        <div class="stat-label">现役军人</div>
+        <div style="font-size:11px; color:#aa7a6a; margin-top:4px;">含预备役约200万</div>
+      </div>
+    </div>
+
+    <div class="cols-2">
+      <div class="card">
+        <div class="card-header c3">🛡️ 军事实力</div>
+        <ul>
+          <li><strong>海军：</strong>11艘核动力航母（尼米兹级+福特级），全球唯一全核动力航母编队</li>
+          <li><strong>空军：</strong>B-2隐形轰炸机、F-22/F-35隐形战斗机，空中优势无可匹敌</li>
+          <li><strong>陆军：</strong>全球最先进的坦克、装甲部队和陆军航空力量</li>
+          <li><strong>太空军：</strong>2019年独立成军，专注太空作战与卫星防御</li>
+          <li><strong>网络战：</strong>NSA下属网络司令部，全球最强网络战能力</li>
+          <li><strong>核威慑：</strong>三位一体核力量（陆基洲际导弹、战略核潜艇、战略轰炸机）</li>
+          <li><strong>全球基地：</strong>在70+个国家设有约800个海外军事基地</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header c4">🌐 国际地位与外交</div>
+        <ul>
+          <li><strong>联合国：</strong>安理会五大常任理事国之一，拥有一票否决权</li>
+          <li><strong>NATO：</strong>北大西洋公约组织核心领袖与主要军事力量</li>
+          <li><strong>美元霸权：</strong>SWIFT国际结算系统以美元为主导</li>
+          <li><strong>布雷顿森林体系：</strong>二战后建立IMF、世界银行等国际金融机构</li>
+          <li><strong>五眼联盟：</strong>与英、加、澳、新共享全球最庞大的情报网络</li>
+          <li><strong>印太战略：</strong>强化与日本、韩国、澳大利亚、菲律宾的同盟关系</li>
+          <li><strong>当前局势：</strong>2026年3月对伊朗军事行动持续中（已进入第28天），中东局势紧张</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">04 / 05</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     第5页：文化社会
+     ══════════════════════════════════════════════════════════ -->
+<div class="slide slide-bg-dark" id="page5">
+  <div class="gold-bar-top"></div>
+  <div class="gold-bar-bottom"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  <div class="glow glow-1" style="bottom:-100px; top:auto; left:auto; right:200px;"></div>
+
+  <div style="padding: 50px 60px;">
+    <h2 class="section-title">🌍 文化、社会与多元性</h2>
+    <div class="sub-label">A Nation of Immigrants — 多元文化的熔炉</div>
+    <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+    <div class="cols-3" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-header c5">🎬 流行文化</div>
+        <ul>
+          <li><strong>好莱坞：</strong>全球最大影视产业中心，奥斯卡金像奖为世界顶级电影荣誉</li>
+          <li><strong>音乐：</strong>爵士、蓝调、摇滚、嘻哈、乡村音乐均起源于美国</li>
+          <li><strong>流媒体：</strong>Netflix、Disney+、Spotify引领全球娱乐消费变革</li>
+          <li><strong>游戏：</strong>EA、Activision、Epic Games等全球顶级游戏公司</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header c2">🏈 体育精神</div>
+        <ul>
+          <li><strong>NFL：</strong>美式橄榄球超级碗，全美收视率最高的体育赛事</li>
+          <li><strong>NBA：</strong>职业篮球联赛，全球最受欢迎的篮球赛事</li>
+          <li><strong>MLB：</strong>职业棒球大联盟，"美国国球"</li>
+          <li><strong>NHL：</strong>职业冰球联赛，北美四大联赛之一</li>
+          <li><strong>NCAA：</strong>大学体育体系，培养了大量奥运冠军和职业运动员</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-header c4">🎭 教育与思想</div>
+        <ul>
+          <li><strong>常春藤：</strong>哈佛、耶鲁、普林斯顿等8所世界顶尖私立大学</li>
+          <li><strong>硅谷创新：</strong>斯坦福、伯克利为科技创业人才摇篮</li>
+          <li><strong>言论自由：</strong>宪法第一修正案保障言论、新闻、宗教自由</li>
+          <li><strong>美国梦：</strong>通过努力实现阶层跃升的核心社会价值观</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cols-2">
+      <div class="card">
+        <div class="card-header c1">👥 族群与多元性</div>
+        <ul>
+          <li><strong>移民国家：</strong>"大熔炉"（Melting Pot）理念，吸引全球移民</li>
+          <li><strong>白人：</strong>约57%（含拉丁裔白人），仍为多数族裔</li>
+          <li><strong>拉丁裔：</strong>约19%，增长最快的族裔群体</li>
+          <li><strong>非裔：</strong>约12%，在文化、体育、政治领域影响深远</li>
+          <li><strong>亚裔：</strong>约6%，在教育、科技领域表现突出</li>
+          <li><strong>原住民：</strong>约2%，567个联邦认可的印第安部落</li>
+          <li><strong>语言：</strong>英语为事实官方语言，西班牙语使用者超4000万</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-header c3">⚡ 社会议题与挑战</div>
+          <ul>
+            <li><strong>枪支暴力：</strong>年均有超过4万人死于枪支相关事件，控枪争议持续</li>
+            <li><strong>种族平等：</strong>BLM运动反映深层种族矛盾与社会不公</li>
+            <li><strong>贫富分化：</strong>1%最富有人口拥有全国32%财富</li>
+            <li><strong>政治极化：</strong>两党对立加剧，社会撕裂严重</li>
+            <li><strong>移民争议：</strong>非法移民与边境安全为持续热点议题</li>
+            <li><strong>医疗体系：</strong>医疗费用全球最高，无医保人口约2700万</li>
+          </ul>
+        </div>
+        <div class="quote" style="margin:0;">
+          "The land of the free and the home of the brave."
+          <div class="author">— 美国国歌《星条旗》</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">05 / 05</div>
+</div>
+
+<div style="text-align:center; padding:30px; font-size:12px; color:#4a6a8a;">
+  美利坚合众国国情介绍 — 2026年3月 · 适用于大学生讲座
+</div>
+
+</body>
+</html>
